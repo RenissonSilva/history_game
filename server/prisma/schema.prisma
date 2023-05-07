@@ -11,12 +11,13 @@ datasource db {
 }
 
 model Story {
-  id              String  @id @default(cuid())
+  id              String   @id @default(cuid())
   title           String
   description     String
-  coverImage      String
-  resolutionImage String
+  coverImage      String?
+  resolutionImage String?
   categoryId      String?
+  createdAt       DateTime @default(now())
 
   categories Category? @relation(fields: [categoryId], references: [id])
 }

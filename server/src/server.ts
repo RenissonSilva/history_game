@@ -3,6 +3,7 @@ import cors from '@fastify/cors'
 import jwt from "@fastify/jwt";
 
 import { storyRoutes } from "./routes/story";
+import { categoryRoutes } from "./routes/category";
 
 async function bootstrap() {
 
@@ -19,6 +20,7 @@ async function bootstrap() {
     })
 
     await fastify.register(storyRoutes)
+    await fastify.register(categoryRoutes)
 
     await fastify.listen({ port: 3333, host: '0.0.0.0' })
 }
