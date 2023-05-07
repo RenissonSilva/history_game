@@ -46,21 +46,16 @@ export function Home() {
         <SafeAreaView className="flex-1 bg-black p-6">
             <Header />
 
-            <ScrollView horizontal={true} className="mt-8">
+            <ScrollView horizontal={true} className="mt-8" showsHorizontalScrollIndicator={false}>
                 {
                     categories.length > 0 && categories.map((category, i) => (
                         <Chip 
+                            key={`${category.name}-${i}`}
                             name={category.name} 
                             activeCategory={activeCategory === i} 
                             setActiveCategory={setActiveCategory}
                             index={i}
                         />
-                        // <Text 
-                        //     key={`${category.name}-${i}`}
-                        //     className="text-white text-xl font-bold text-center mx-1"
-                        // >
-                        //     {category.name}
-                        // </Text>
                     ))
                 }
             </ScrollView>
