@@ -6,12 +6,15 @@ import { prisma } from "../lib/prisma";
 export async function categoryRoutes(fastify: FastifyInstance) {
     fastify.get('/category', async (req, reply) => {
         const categories = await prisma.category.findMany({
+            select: {
+                name: true
+            },
             orderBy: {
                 name: 'asc'
             }
         });
 
-        return reply.code(200).send({ categories })
+        return reply.code(200).send(categories)
     })
 
     fastify.post('/category', async (req, reply) => {
