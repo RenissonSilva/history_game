@@ -8,12 +8,14 @@ import { Chip } from "../components/Chip";
 import { Header } from "../components/Header"
 import { Loading } from "../components/Loading";
 import clsx from "clsx";
+import { CardList } from "../components/CardList";
 
 type CategoryProps = Array<{
     name: string;
 }>
 
 type StoryProps = Array<{
+    id: string;
     title: string;
     description: string;
 }>
@@ -66,7 +68,7 @@ export function Home() {
     }
 
     return (
-        <SafeAreaView className="flex-1 bg-black p-6">
+        <SafeAreaView className="flex-1 bg-black p-3">
             <Header />
 
             <ScrollView horizontal={true} className="mt-8 h-20" showsHorizontalScrollIndicator={false}>
@@ -83,57 +85,7 @@ export function Home() {
                 }
             </ScrollView>
 
-            <ScrollView>
-                <View className="flex-row">
-                    <View>
-                    {stories
-                            .filter((item, index) => index % 2 === 0)
-                            .map((story, index) => (
-                                <View className={
-                                    clsx("rounded-lg w-40 m-2", {
-                                        ["bg-blue h-60"] : index % 2 === 1,
-                                        ["bg-green h-60"] : index % 2 === 0,
-                                    })
-                                }
-                                >
-                                    <Text>
-                                        {story.title}
-                                    </Text>
-                
-                                    <Text>
-                                        {story.description}
-                                    </Text>
-                                </View>
-                            ))
-                        }
-                    </View>
-
-                    <View>
-                        {stories
-                            .filter((item, index) => index % 2 === 1)
-                            .map((story, index) => (
-                                <View className={
-                                    clsx("rounded-lg w-40 m-2", {
-                                        ["bg-purple h-60"] : index % 2 === 1,
-                                        ["bg-red h-60"] : index % 2 === 0,
-                                        ["bg-red h-80"] : index === 0,
-                                    })
-                                }
-                                >
-                                    <Text>
-                                        {story.title}
-                                    </Text>
-                
-                                    <Text>
-                                        {story.description}
-                                    </Text>
-                                </View>
-                            ))
-                        }
-                    </View>
-                </View>
-                
-            </ScrollView>
+            <CardList data={stories} />
 
         </SafeAreaView>
     )
