@@ -7,7 +7,7 @@ export async function storyRoutes(fastify: FastifyInstance) {
     fastify.get('/story', async (req, reply) => {
         const stories = await prisma.story.findMany();
 
-        return reply.code(200).send({ stories })
+        return reply.code(200).send(stories)
     })
 
     fastify.post('/story', async (req, reply) => {

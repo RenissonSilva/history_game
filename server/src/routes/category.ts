@@ -9,9 +9,6 @@ export async function categoryRoutes(fastify: FastifyInstance) {
             select: {
                 name: true
             },
-            orderBy: {
-                name: 'asc'
-            }
         });
 
         return reply.code(200).send(categories)
