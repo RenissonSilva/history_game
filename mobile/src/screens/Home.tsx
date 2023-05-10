@@ -18,6 +18,7 @@ type StoryProps = Array<{
     id: string;
     title: string;
     description: string;
+    coverImage: string;
 }>
 
 export function Home() {
@@ -85,7 +86,7 @@ export function Home() {
                 }
             </ScrollView>
 
-            <CardList data={stories} />
+            <CardList data={stories}/>
 
         </SafeAreaView>
     )

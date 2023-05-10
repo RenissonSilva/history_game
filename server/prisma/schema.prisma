@@ -14,6 +14,7 @@ model Story {
   id              String   @id @default(cuid())
   title           String
   description     String
+  resolution      String?
   coverImage      String?
   resolutionImage String?
   categoryId      String?

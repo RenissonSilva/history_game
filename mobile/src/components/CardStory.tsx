@@ -1,4 +1,5 @@
-import { Text, TouchableOpacity, TouchableOpacityProps } from 'react-native'
+import { ImageBackground, Text, TouchableOpacity, TouchableOpacityProps } from 'react-native'
+import { LinearGradient } from "expo-linear-gradient"; 
 
 import clsx from "clsx";
 
@@ -7,6 +8,7 @@ interface CardStoryProps extends TouchableOpacityProps {
         id: string; 
         title: string; 
         description: string; 
+        coverImage: string;
     }
     index: number; 
     column: number;
@@ -16,7 +18,7 @@ export function CardStory({ data, index, column, ...rest }: CardStoryProps) {
 
     return (
         <TouchableOpacity className={
-            clsx("rounded-lg w-50 m-1", {
+            clsx("rounded-lg w-50 m-1 justify-between", {
                 ["bg-blue h-60"] : index % 2 === 1 && column === 0,
                 ["bg-green h-60"] : index % 2 === 0 && column === 0,
                 ["bg-purple h-60"] : index % 2 === 1 && column === 1,
@@ -26,13 +28,23 @@ export function CardStory({ data, index, column, ...rest }: CardStoryProps) {
             key={data.id}
             {...rest}
         >
-            <Text>
-                {data.title}
-            </Text>
+            <ImageBackground
+                resizeMode="contain"
+                source={{ uri: data.coverImage }}
+            >
+                <LinearGradient colors={['rgba(0,0,0,0.9)', 'rgba(0,0,0,0)']} className="h-1/2 p-3 rounded-lg">
+                    <Text className="font-extrabold text-white text-lg">
+                        {data.title}
+                    </Text>
+                </LinearGradient>
 
-            <Text>
-                {data.description}
-            </Text>
+            
+                <LinearGradient colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.9)']} className="h-1/2 p-3 rounded-lg justify-end">
+                    <Text className="text-white" numberOfLines={3}>
+                        {data.description}
+                    </Text>
+                </LinearGradient>
+            </ImageBackground>
         </TouchableOpacity>
     )
 }
