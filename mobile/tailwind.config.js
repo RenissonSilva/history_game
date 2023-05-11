@@ -18,7 +18,7 @@ module.exports = {
         purple: '#59418C',
         filter: '#414141',
         filterDisabled: '#303030',
-        black: '#1B1B1B',
+        black: '#0D0D0D',
 
         // Text colors
         textDisabled: '#6A6A6F',

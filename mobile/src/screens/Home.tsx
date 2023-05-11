@@ -1,5 +1,5 @@
 import { useCallback, useState } from "react";
-import { Alert, ScrollView, View, Text, FlatList } from "react-native";
+import { Alert, ScrollView } from "react-native";
 import { useFocusEffect } from "@react-navigation/native";
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -7,7 +7,6 @@ import { api } from "../lib/axios"
 import { Chip } from "../components/Chip";
 import { Header } from "../components/Header"
 import { Loading } from "../components/Loading";
-import clsx from "clsx";
 import { CardList } from "../components/CardList";
 
 type CategoryProps = Array<{
