@@ -68,7 +68,7 @@ export function Home() {
     }
 
     return (
-        <SafeAreaView className="flex-1 bg-black p-3">
+        <SafeAreaView className="flex-1 bg-black px-3">
             <Header />
 
             <ScrollView horizontal={true} className="mt-8 h-20" showsHorizontalScrollIndicator={false}>

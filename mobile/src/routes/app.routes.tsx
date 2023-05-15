@@ -10,7 +10,6 @@ export function AppRoutes() {
         <Navigator screenOptions={{ headerShown: false }}>
             <Screen name="home" component={Home}/>
             <Screen name="detail" component={HistoryDetail}/>
-            {/* <Screen name="habit" component={Habit}/> */}
         </Navigator>
     )
 }

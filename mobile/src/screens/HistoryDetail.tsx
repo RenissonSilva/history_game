@@ -5,9 +5,10 @@ import { useRoute } from "@react-navigation/native"
 import { Loading } from "../components/Loading";
 import { BackButton } from "../components/BackButton";
 import { MainButton } from "../components/MainButton";
-import { LinearGradient } from "expo-linear-gradient";
 
-interface Params {
+import clsx from "clsx";
+
+export interface HistoryParams {
     data: {
         title: string;
         resolution: string;
@@ -19,14 +20,11 @@ interface Params {
 
 export function HistoryDetail() {
     const route = useRoute();
-    const { data } = route.params as Params;
-    console.log('data', data.coverImage)
-    const [loading, setLoading] = useState(false);
+    const { data } = route.params as HistoryParams;
+    const [showResolution, setShowResolution] = useState(false);
 
-    if(loading) {
-        return (
-            <Loading />
-        )
+    async function changeContent() {
+        setShowResolution(!showResolution)
     }
 
     return (
@@ -36,41 +34,22 @@ export function HistoryDetail() {
 
                     <Image
                         className="w-64 h-64 self-center relative mt-4"
-                        source={{uri: data.coverImage}}
+                        source={{uri: !showResolution ? data.coverImage : data.resolutionImage}}
                     />
                 </View>
 
-                <Text className="text-blue text-3xl my-6 mx-4 font-extrabold">{data.title}</Text>
+                <Text className={clsx("text-blue text-3xl mt-8 mx-8 font-extrabold", {
+                ["hidden"] : showResolution,
+                })}>{!showResolution ? data.title : ''}</Text>
 
-                <ScrollView className="mx-4" showsVerticalScrollIndicator={false} fadingEdgeLength={200}>
-                    <Text className="text-white text-2xl mb-32">{data.description}</Text>
+                <ScrollView className={clsx("mx-8", {
+                ["mt-8"] : showResolution,
+                ["mt-6"] : !showResolution,
+                })} showsVerticalScrollIndicator={false} fadingEdgeLength={200}>
+                    <Text className="text-white text-2xl mb-32">{!showResolution ? data.description : data.resolution}</Text>
                 </ScrollView>
 
-                <MainButton />
+                <MainButton changeContent={changeContent} showResolution={showResolution}/>
         </View>
     )
 }
-
-const styles = {
-    descriptionContainer: {
-      flex: 1,
-      overflow: 'hidden',
-    },
-    descriptionHeading: {
-      marginTop: 20,
-      fontSize: 21,
-      color: '#212121',
-    },
-    descriptionText: {
-      fontSize: 15,
-      color: '#6f6f6f',
-    },
-    linearGradientContainer: {
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      right: 0,
-      bottom: 0,
-    },
-  }
-
