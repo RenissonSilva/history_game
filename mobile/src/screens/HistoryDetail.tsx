@@ -42,15 +42,35 @@ export function HistoryDetail() {
 
                 <Text className="text-blue text-3xl my-6 mx-4 font-extrabold">{data.title}</Text>
 
-                <ScrollView className="mx-4" showsVerticalScrollIndicator={false}>
-                    <LinearGradient colors={['transparent', 'rgba(0,0,0,0.9)']}>
-                        <Text className="text-white text-2xl z-1">
-                            {data.description}
-                        </Text>
-                    </LinearGradient>
+                <ScrollView className="mx-4" showsVerticalScrollIndicator={false} fadingEdgeLength={200}>
+                    <Text className="text-white text-2xl mb-32">{data.description}</Text>
                 </ScrollView>
 
                 <MainButton />
         </View>
     )
 }
+
+const styles = {
+    descriptionContainer: {
+      flex: 1,
+      overflow: 'hidden',
+    },
+    descriptionHeading: {
+      marginTop: 20,
+      fontSize: 21,
+      color: '#212121',
+    },
+    descriptionText: {
+      fontSize: 15,
+      color: '#6f6f6f',
+    },
+    linearGradientContainer: {
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+    },
+  }
+
