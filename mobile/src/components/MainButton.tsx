@@ -1,16 +1,29 @@
 import { TouchableOpacity, Text } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons"
 
+import clsx from "clsx";
+
 interface Props {
     changeContent: () => void;
     showResolution: boolean;
+    colors: {
+        blue: boolean;
+        green: boolean;
+        purple: boolean;
+        red: boolean;
+    };
 }
 
-export function MainButton({ changeContent, showResolution }: Props) {
+export function MainButton({ changeContent, showResolution, colors }: Props) {
 
     return (
         <TouchableOpacity
-            className="w-[92%] h-[72] rounded-full justify-center items-center bg-blue self-center mb-4 flex-row"
+            className={clsx("w-[92%] h-[72] rounded-full justify-center items-center self-center mb-4 flex-row", {
+                ["bg-blue"] : colors.blue,
+                ["bg-green"] : colors.green,
+                ["bg-purple"] : colors.purple,
+                ["bg-red"] : colors.red,
+            })}
             onPress={changeContent}
         >
             <Text className="text-gray-200 text-2xl">{!showResolution ? 'Ver resolução' : 'Próxima história'}</Text>

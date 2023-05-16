@@ -16,20 +16,31 @@ export interface HistoryParams {
         coverImage: string;
         resolutionImage: string;
     };
+    colors: {
+        blue: boolean;
+        green: boolean;
+        purple: boolean;
+        red: boolean;
+    };
 }
 
 export function HistoryDetail() {
     const route = useRoute();
-    const { data } = route.params as HistoryParams;
+    const { data, colors } = route.params as HistoryParams;
     const [showResolution, setShowResolution] = useState(false);
-
+    console.log('colors inside', colors)
     async function changeContent() {
         setShowResolution(!showResolution)
     }
 
     return (
         <View className="flex-1 bg-black pt-12">
-                <View className="bg-blue h-80 rounded-b-3xl p-4">
+                <View className={clsx("h-80 rounded-b-3xl p-4", {
+                    ["bg-blue"] : colors.blue,
+                    ["bg-green"] : colors.green,
+                    ["bg-purple"] : colors.purple,
+                    ["bg-red"] : colors.red,
+                })}>
                     <BackButton />
 
                     <Image
@@ -38,8 +49,12 @@ export function HistoryDetail() {
                     />
                 </View>
 
-                <Text className={clsx("text-blue text-3xl mt-8 mx-8 font-extrabold", {
+                <Text className={clsx("text-3xl mt-8 mx-8 font-extrabold", {
                 ["hidden"] : showResolution,
+                ["text-blue"] : colors.blue,
+                ["text-green"] : colors.green,
+                ["text-purple"] : colors.purple,
+                ["text-red"] : colors.red,
                 })}>{!showResolution ? data.title : ''}</Text>
 
                 <ScrollView className={clsx("mx-8", {
@@ -49,7 +64,7 @@ export function HistoryDetail() {
                     <Text className="text-white text-2xl mb-32">{!showResolution ? data.description : data.resolution}</Text>
                 </ScrollView>
 
-                <MainButton changeContent={changeContent} showResolution={showResolution}/>
+                <MainButton changeContent={changeContent} showResolution={showResolution} colors={colors}/>
         </View>
     )
 }

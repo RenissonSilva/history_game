@@ -17,18 +17,24 @@ interface CardStoryProps extends TouchableOpacityProps {
   
 export function CardStory({ data, index, column, ...rest }: CardStoryProps) {
     const { navigate } = useNavigation();
+    const colors = {
+        'blue': index % 2 === 1 && column === 0,
+        'green' : index % 2 === 0 && column === 0,
+        'purple': index % 2 === 1 && column === 1,
+        'red': (index % 2 === 0 && column === 1) || (index === 0 && column === 1)
+    }
 
     return (
         <TouchableOpacity className={
             clsx("rounded-lg w-50 m-1 justify-between", {
-                ["bg-blue h-60"] : index % 2 === 1 && column === 0,
-                ["bg-green h-60"] : index % 2 === 0 && column === 0,
-                ["bg-purple h-60"] : index % 2 === 1 && column === 1,
-                ["bg-red h-60"] : index % 2 === 0 && column === 1,
-                ["bg-red h-80"] : index === 0 && column === 1,
+                ["bg-blue h-60"] : colors.blue,
+                ["bg-green h-60"] : colors.green,
+                ["bg-purple h-60"] : colors.purple,
+                ["bg-red h-60"] : colors.red,
+                ["bg-red h-80"] : colors.red,
             })}
             key={data.id}
-            onPress={() => navigate('detail', { data })}
+            onPress={() => navigate('detail', { data, colors })}
             {...rest}
         >
             <ImageBackground
