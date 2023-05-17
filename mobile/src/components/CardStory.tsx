@@ -1,6 +1,6 @@
-import { ImageBackground, Text, TouchableOpacity, TouchableOpacityProps, View } from 'react-native'
 import { LinearGradient } from "expo-linear-gradient"; 
 import { useNavigation } from "@react-navigation/native"
+import { ImageBackground, Text, TouchableOpacity, TouchableOpacityProps, View } from 'react-native'
 
 import clsx from "clsx";
 
@@ -30,8 +30,8 @@ export function CardStory({ data, index, column, ...rest }: CardStoryProps) {
                 ["bg-blue h-60"] : colors.blue,
                 ["bg-green h-60"] : colors.green,
                 ["bg-purple h-60"] : colors.purple,
-                ["bg-red h-60"] : colors.red,
-                ["bg-red h-80"] : colors.red,
+                ["bg-red h-60"] : index % 2 === 0 && column === 1,
+                ["bg-red h-80"] : index === 0 && column === 1,
             })}
             key={data.id}
             onPress={() => navigate('detail', { data, colors })}

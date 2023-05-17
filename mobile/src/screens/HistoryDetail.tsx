@@ -1,8 +1,7 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
+import { useNavigation, useRoute } from "@react-navigation/native"
 import { View, Text, Image, ScrollView } from "react-native";
-import { useRoute } from "@react-navigation/native"
 
-import { Loading } from "../components/Loading";
 import { BackButton } from "../components/BackButton";
 import { MainButton } from "../components/MainButton";
 
@@ -28,9 +27,23 @@ export function HistoryDetail() {
     const route = useRoute();
     const { data, colors } = route.params as HistoryParams;
     const [showResolution, setShowResolution] = useState(false);
-    console.log('colors inside', colors)
+    const { navigate } = useNavigation();
+
     async function changeContent() {
+        onPressTouch();
         setShowResolution(!showResolution)
+        // if(showResolution) {
+        //     navigate('detail', { data, colors })
+        //     console.log('showResolution', showResolution ? 'TROCAR' : 'NÃO TROCAR')
+        // }
+    }
+    const scrollRef = useRef();
+
+    const onPressTouch = () => {
+        scrollRef.current?.scrollTo({
+            y: 0,
+            animated: false,
+        });
     }
 
     return (
@@ -57,10 +70,15 @@ export function HistoryDetail() {
                 ["text-red"] : colors.red,
                 })}>{!showResolution ? data.title : ''}</Text>
 
-                <ScrollView className={clsx("mx-8", {
-                ["mt-8"] : showResolution,
-                ["mt-6"] : !showResolution,
-                })} showsVerticalScrollIndicator={false} fadingEdgeLength={200}>
+                <ScrollView 
+                    className={clsx("mx-8", {
+                    ["mt-8"] : showResolution,
+                    ["mt-6"] : !showResolution,
+                    })} 
+                    showsVerticalScrollIndicator={false} 
+                    fadingEdgeLength={200}
+                    ref={scrollRef}
+                >
                     <Text className="text-white text-2xl mb-32">{!showResolution ? data.description : data.resolution}</Text>
                 </ScrollView>
 
