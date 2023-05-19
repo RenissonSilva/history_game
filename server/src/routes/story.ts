@@ -5,7 +5,9 @@ import { prisma } from "../lib/prisma";
 
 export async function storyRoutes(fastify: FastifyInstance) {
     fastify.get('/story', async (req, reply) => {
-        const stories = await prisma.story.findMany();
+        const stories = await prisma.story.findMany({
+            take: 6
+        });
 
         return reply.code(200).send(stories)
     })
