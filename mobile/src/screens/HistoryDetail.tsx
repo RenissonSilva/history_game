@@ -54,7 +54,10 @@ export function HistoryDetail() {
                     ["bg-purple"] : colors.purple,
                     ["bg-red"] : colors.red,
                 })}>
-                    <BackButton />
+                    <BackButton 
+                        showResolution={showResolution}
+                        changeContent={changeContent}
+                    />
 
                     <Image
                         className="w-64 h-64 self-center relative mt-4"
