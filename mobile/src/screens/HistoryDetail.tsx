@@ -32,10 +32,11 @@ export function HistoryDetail() {
     async function changeContent() {
         onPressTouch();
         setShowResolution(!showResolution)
-        // if(showResolution) {
-        //     navigate('detail', { data, colors })
-        //     console.log('showResolution', showResolution ? 'TROCAR' : 'NÃO TROCAR')
-        // }
+        if(showResolution) {
+            console.log('data', data)
+            // navigate('detail', { data, colors })
+            console.log('showResolution', showResolution ? 'TROCAR' : 'NÃO TROCAR')
+        }
     }
     const scrollRef = useRef();
 

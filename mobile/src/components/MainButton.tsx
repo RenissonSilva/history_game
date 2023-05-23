@@ -26,9 +26,15 @@ export function MainButton({ changeContent, showResolution, colors }: Props) {
             })}
             onPress={changeContent}
         >
-            <Text className="text-gray-200 text-2xl">{!showResolution ? 'Ver resolução' : 'Próxima história'}</Text>
-            {showResolution && <MaterialIcons 
+            <Text className="text-gray-200 text-2xl">{!showResolution ? 'Ver resolução' : 'Voltar para o enigma'}</Text>
+            {/* {showResolution && <MaterialIcons 
                 name="double-arrow" 
+                size={36} 
+                color="rgba(255, 255, 255, .85)"
+                style={{ marginLeft: 10 }}
+            />} */}
+            {!showResolution && <MaterialIcons 
+                name="visibility" 
                 size={36} 
                 color="rgba(255, 255, 255, .85)"
                 style={{ marginLeft: 10 }}

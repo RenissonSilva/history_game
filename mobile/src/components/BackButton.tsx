@@ -13,7 +13,8 @@ export function BackButton({ showResolution, changeContent }: Props) {
     return(
         <TouchableOpacity 
             activeOpacity={0.7} 
-            onPress={showResolution ? changeContent : goBack} 
+            // onPress={showResolution ? changeContent : goBack} 
+            onPress={goBack} 
             className="bg-black/50 w-16 h-16 rounded-full justify-center items-center pl-2 m-5 absolute"
         >
             <MaterialIcons 
