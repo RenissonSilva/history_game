@@ -9,13 +9,12 @@ export async function storyRoutes(fastify: FastifyInstance) {
             page: z.string(),
         })
 
-        const { page } = listStoriesProps.parse(req.query)
-
-        console.log('page', page)
+        let { page } = listStoriesProps.parse(req.query)
+        const numberOfPages = Number(page)
 
         const stories = await prisma.story.findMany({
             take: 10,
-            skip: (page - 1) * 10
+            skip: (numberOfPages - 1) * 10
         });
 
         return reply.code(200).send({stories})

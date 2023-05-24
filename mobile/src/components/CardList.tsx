@@ -11,12 +11,23 @@ export interface StoryCardProps {
 
 interface Props {
     data: StoryCardProps[];
+    fetchStories: () => void;
+    loadedEverything: boolean;
 }
 
-export function CardList({ data }: Props) {
+export function CardList({ data, fetchStories, loadedEverything }: Props) {
 
     return (
-        <ScrollView showsVerticalScrollIndicator={false}>
+        <ScrollView 
+            showsVerticalScrollIndicator={false}
+            onScroll={(e) => {
+                let paddingToBottom = 10;
+                paddingToBottom += e.nativeEvent.layoutMeasurement.height;
+                if(!loadedEverything && (e.nativeEvent.contentOffset.y >= e.nativeEvent.contentSize.height - paddingToBottom)) {
+                  fetchStories();
+                }
+            }}
+        >
                 <View className="flex-row flex-1">
                     {/* Left Column Cards */}
                     <View className="flex-1">
