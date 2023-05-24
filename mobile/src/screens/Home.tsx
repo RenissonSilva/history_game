@@ -21,6 +21,7 @@ type StoryProps = Array<{
 }>
 
 export function Home() {
+    const [page, setPage] = useState<number>(1);
     const [loading, setLoading] = useState(true);
     const [activeCategory, setActiveCategory] = useState(0);
     const [categories, setCategories] = useState<CategoryProps>([]);
@@ -31,7 +32,6 @@ export function Home() {
             setLoading(true);
             const response = await api.get('/category');
 
-            console.log('response.data', response.data)
             setCategories(response.data)
         } catch (error) {
             console.log(error)
@@ -44,10 +44,11 @@ export function Home() {
     async function fetchStories() {
         try {
             setLoading(true);
-            const response = await api.get('/story');
+            const response = await api.get('/story', { params: { page }});
 
             console.log('response.data', response.data)
-            setStories(response.data)
+            setStories(response.data.stories)
+            setPage(page + 1)
         } catch (error) {
             console.log(error)
             Alert.alert('Ops', 'Não foi possível carregar')
@@ -55,7 +56,7 @@ export function Home() {
             setLoading(false)
         }
     }
-    console.log('stories', stories)
+    
     useFocusEffect(useCallback(() => {
         fetchCategories();
         fetchStories();
@@ -71,7 +72,12 @@ export function Home() {
         <SafeAreaView className="flex-1 bg-black px-3">
             <Header />
 
-            <ScrollView horizontal={true} className="mt-8 h-20" showsHorizontalScrollIndicator={false}>
+            <ScrollView 
+                horizontal={true} 
+                className="mt-8 h-20" 
+                showsHorizontalScrollIndicator={false}
+                onScrollEndDrag={fetchStories}
+            >
                 {
                     categories.length > 0 && categories.map((category, i) => (
                         <Chip 
