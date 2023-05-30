@@ -5,16 +5,16 @@ import { prisma } from "../lib/prisma";
 
 export async function storyRoutes(fastify: FastifyInstance) {
     fastify.get('/story', async (req, reply) => {
-        const listStoriesProps = z.object({
-            page: z.string(),
-        })
+        // const listStoriesProps = z.object({
+        //     page: z.string(),
+        // })
 
-        let { page } = listStoriesProps.parse(req.query)
-        const numberOfPages = Number(page)
+        // let { page } = listStoriesProps.parse(req.query)
+        // const numberOfPages = Number(page)
 
         const stories = await prisma.story.findMany({
-            take: 10,
-            skip: (numberOfPages - 1) * 10
+            // take: 10,
+            // skip: (numberOfPages - 1) * 10
         });
 
         return reply.code(200).send({stories})

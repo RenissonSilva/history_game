@@ -1,4 +1,5 @@
-import { ScrollView, View } from 'react-native'
+import { useState } from "react";
+import { ScrollView, View, RefreshControl } from 'react-native'
 
 import { CardStory } from "./CardStory";
 
@@ -15,30 +16,58 @@ interface Props {
     loadedEverything: boolean;
 }
 
-export function CardList({ data, fetchStories, loadedEverything }: Props) {
+export function CardList({ data, loadedEverything}: Props) {
+    const [refreshing, setRefreshing] = useState(false);
+    const [itemsToRender, setItemsToRender] = useState(10);
+
+
+    const onRefresh = () => {
+        if(itemsToRender < data.length){
+            setRefreshing(true);
+            
+            setTimeout(function() {
+                setItemsToRender(itemsToRender + 10)
+                setRefreshing(false);
+            }, 1000);
+        } else {
+            setTimeout(function() {
+                console.log('onRefresh')
+                setRefreshing(false);
+            }, 1000);
+        }
+    };
 
     return (
         <ScrollView 
             showsVerticalScrollIndicator={false}
-            onScroll={(e) => {
-                let paddingToBottom = 10;
-                paddingToBottom += e.nativeEvent.layoutMeasurement.height;
-                if(!loadedEverything && (e.nativeEvent.contentOffset.y >= e.nativeEvent.contentSize.height - paddingToBottom)) {
-                  fetchStories();
+            onMomentumScrollEnd={(e) => {
+                const scrollPosition = e.nativeEvent.contentOffset.y;
+                const scrollViewHeight = e.nativeEvent.layoutMeasurement.height;
+                const contentHeight = e.nativeEvent.contentSize.height;
+                const isScrolledToBottom = scrollViewHeight + scrollPosition;
+
+                if(isScrolledToBottom >= (contentHeight-50) && !loadedEverything){
+                    onRefresh();
                 }
+
             }}
+            refreshControl={
+                <RefreshControl
+                  refreshing={refreshing}
+                />
+            }
         >
                 <View className="flex-row flex-1">
                     {/* Left Column Cards */}
                     <View className="flex-1">
-                        {data.filter((item, index) => index % 2 === 0).map((story, index) => (
+                        {data.filter((item, index) => index % 2 === 0 && index < itemsToRender).map((story, index) => (
                             <CardStory data={story} index={index} column={0} key={story.id} />
                         ))}
                     </View>
 
                     {/* Right Column Cards */}
                     <View className="flex-1">
-                        {data.filter((item, index) => index % 2 === 1).map((story, index) => (
+                        {data.filter((item, index) => index % 2 === 1 && index < itemsToRender).map((story, index) => (
                             <CardStory data={story} index={index} column={1} key={story.id} />
                         ))}
                     </View>

@@ -94,7 +94,11 @@ export function Home() {
                 }
             </ScrollView>
 
-            <CardList data={stories} fetchStories={fetchStories} loadedEverything={loadedEverything}/>
+            <CardList
+                data={stories} 
+                fetchStories={fetchStories}
+                loadedEverything={loadedEverything}
+            />
 
         </SafeAreaView>
     )
