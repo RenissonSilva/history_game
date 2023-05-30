@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { ScrollView, View, RefreshControl } from 'react-native'
+import { Snackbar } from 'react-native-paper';
 
 import { CardStory } from "./CardStory";
+import { Toast } from "./Toast";
 
 export interface StoryCardProps {
     id: string;
@@ -19,19 +21,19 @@ interface Props {
 export function CardList({ data, loadedEverything}: Props) {
     const [refreshing, setRefreshing] = useState(false);
     const [itemsToRender, setItemsToRender] = useState(10);
-
+    const [showToast, setShowToast] = useState(false);
 
     const onRefresh = () => {
-        if(itemsToRender < data.length){
-            setRefreshing(true);
-            
+        setRefreshing(true);
+
+        if(itemsToRender < data.length) {
             setTimeout(function() {
                 setItemsToRender(itemsToRender + 10)
                 setRefreshing(false);
             }, 1000);
         } else {
             setTimeout(function() {
-                console.log('onRefresh')
+                setShowToast(true)
                 setRefreshing(false);
             }, 1000);
         }
@@ -72,6 +74,14 @@ export function CardList({ data, loadedEverything}: Props) {
                         ))}
                     </View>
                 </View>
+
+                {showToast && 
+                    <Toast 
+                        visible={showToast} 
+                        onDismissSnackBar={() => setShowToast(false)}
+                        title="Todas as histórias foram carregadas"
+                    />
+                }
                 
             </ScrollView>
     )

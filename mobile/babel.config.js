@@ -5,5 +5,10 @@ module.exports = function(api) {
     plugins: [
       'nativewind/babel'
     ],
+    env: {
+      production: {
+        plugins: ['react-native-paper/babel'],
+      },
+    },
   };
 };
