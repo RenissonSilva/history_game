@@ -19,25 +19,26 @@ export function MainButton({ changeContent, showResolution, colors }: Props) {
     return (
         <TouchableOpacity
             className={clsx("w-[92%] h-[72] rounded-full justify-center items-center self-center mb-4 flex-row", {
-                ["bg-blue"] : colors.blue,
-                ["bg-green"] : colors.green,
-                ["bg-purple"] : colors.purple,
-                ["bg-red"] : colors.red,
+                ["bg-blue"] : colors.blue || colors.red,
+                ["bg-purple"] : colors.green || colors.purple,
             })}
             onPress={changeContent}
         >
-            <Text className="text-gray-200 text-2xl">{!showResolution ? 'Ver resolução' : 'Voltar para o enigma'}</Text>
-            {/* {showResolution && <MaterialIcons 
-                name="double-arrow" 
-                size={36} 
+            {showResolution && <MaterialIcons 
+                name="navigate-before" 
+                size={40} 
                 color="rgba(255, 255, 255, .85)"
-                style={{ marginLeft: 10 }}
-            />} */}
+            />}
+                <Text className={clsx("text-gray-200 text-2xl", {
+                    ["mr-6"] : showResolution,
+                    ["ml-6"] : !showResolution,
+                })}>
+                    {!showResolution ? 'Ver resolução' : 'Voltar para o enigma'}
+                </Text>
             {!showResolution && <MaterialIcons 
-                name="visibility" 
-                size={36} 
+                name="navigate-next" 
+                size={40} 
                 color="rgba(255, 255, 255, .85)"
-                style={{ marginLeft: 10 }}
             />}
         </TouchableOpacity>
     )

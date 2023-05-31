@@ -33,9 +33,7 @@ export function HistoryDetail() {
         onPressTouch();
         setShowResolution(!showResolution)
         if(showResolution) {
-            console.log('data', data)
             // navigate('detail', { data, colors })
-            console.log('showResolution', showResolution ? 'TROCAR' : 'NÃO TROCAR')
         }
     }
     const scrollRef = useRef();
@@ -50,10 +48,8 @@ export function HistoryDetail() {
     return (
         <View className="flex-1 bg-black pt-12">
                 <View className={clsx("h-80 rounded-b-3xl p-4", {
-                    ["bg-blue"] : colors.blue,
-                    ["bg-green"] : colors.green,
-                    ["bg-purple"] : colors.purple,
-                    ["bg-red"] : colors.red,
+                    ["bg-blue"] : colors.blue || colors.red,
+                    ["bg-purple"] : colors.green || colors.purple,
                 })}>
                     <BackButton 
                         showResolution={showResolution}
@@ -68,10 +64,8 @@ export function HistoryDetail() {
 
                 <Text className={clsx("text-3xl mt-8 mx-8 font-extrabold", {
                 ["hidden"] : showResolution,
-                ["text-blue"] : colors.blue,
-                ["text-green"] : colors.green,
-                ["text-purple"] : colors.purple,
-                ["text-red"] : colors.red,
+                ["text-blue"] : colors.blue || colors.red,
+                ["text-purple"] : colors.purple || colors.green,
                 })}>{!showResolution ? data.title : ''}</Text>
 
                 <ScrollView 
