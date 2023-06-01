@@ -1,28 +1,27 @@
-// import './src/lib/dayjs';
 import { StatusBar } from 'react-native';
-// import { 
-//   useFonts,
-//   Inter_400Regular,
-//   Inter_600SemiBold,
-//   Inter_700Bold,
-//   Inter_800ExtraBold
-// } from '@expo-google-fonts/inter';
-// import { Loading } from './src/components/Loading';
+import { useFonts } from 'expo-font'
+
+
+import { Loading } from './src/components/Loading';
+
 import { Routes } from "./src/routes";
 
 export default function App() {
-  // const [fontsLoaded] = useFonts({
-  //   Inter_400Regular,
-  //   Inter_600SemiBold,
-  //   Inter_700Bold,
-  //   Inter_800ExtraBold
-  // });
+  const [fontsLoaded] = useFonts({
+    RalewayRegular: require('./assets/fonts/Raleway/Raleway-Regular.ttf'),
+    RalewaySemiBold: require('./assets/fonts/Raleway/Raleway-SemiBold.ttf'),
+    RalewayBold: require('./assets/fonts/Raleway/Raleway-Bold.ttf'),
+    MuseoModernoRegular: require('./assets/fonts/MuseoModerno/MuseoModerno-Regular.ttf'),
+    MuseoModernoSemiBold: require('./assets/fonts/MuseoModerno/MuseoModerno-SemiBold.ttf'),
+    MuseoModernoBold: require('./assets/fonts/MuseoModerno/MuseoModerno-Bold.ttf'),
+    IMFellEnglishSC: require('./assets/fonts/IM_Fell_English_SC/IMFellEnglishSC-Regular.ttf'),
+  });
 
-  // if(!fontsLoaded) {
-  //   return (
-  //     <Loading />
-  //   )
-  // }
+  if(!fontsLoaded) {
+    return (
+      <Loading />
+    )
+  }
 
   return (
     <>

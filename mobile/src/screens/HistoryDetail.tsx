@@ -62,7 +62,7 @@ export function HistoryDetail() {
                     />
                 </View>
 
-                <Text className={clsx("text-3xl mt-8 mx-8 font-extrabold", {
+                <Text className={clsx("text-[40px] mt-8 mx-8 font-imfell ", {
                 ["hidden"] : showResolution,
                 ["text-blue"] : colors.blue || colors.red,
                 ["text-purple"] : colors.purple || colors.green,
@@ -77,7 +77,7 @@ export function HistoryDetail() {
                     fadingEdgeLength={200}
                     ref={scrollRef}
                 >
-                    <Text className="text-white text-2xl mb-32">{!showResolution ? data.description : data.resolution}</Text>
+                    <Text className="text-white text-2xl mb-32 font-museo400 tracking-widest">{!showResolution ? data.description : data.resolution}</Text>
                 </ScrollView>
 
                 <MainButton changeContent={changeContent} showResolution={showResolution} colors={colors}/>

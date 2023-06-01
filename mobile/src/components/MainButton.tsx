@@ -29,7 +29,7 @@ export function MainButton({ changeContent, showResolution, colors }: Props) {
                 size={40} 
                 color="rgba(255, 255, 255, .85)"
             />}
-                <Text className={clsx("text-gray-200 text-2xl", {
+                <Text className={clsx("text-gray-200 text-2xl font-museo400 mt-1", {
                     ["mr-6"] : showResolution,
                     ["ml-6"] : !showResolution,
                 })}>

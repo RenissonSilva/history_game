@@ -40,7 +40,7 @@ export function CardStory({ data, index, column, ...rest }: CardStoryProps) {
                 source={{ uri: data.coverImage }}
             >
                 <LinearGradient colors={['rgba(13,13,13,.8)', 'transparent']} className="h-1/3 p-3 rounded-lg">
-                    <Text className="font-extrabold text-white text-lg">
+                    <Text className="text-white text-lg font-museo800">
                         {data.title}
                     </Text>
                 </LinearGradient>
@@ -48,7 +48,7 @@ export function CardStory({ data, index, column, ...rest }: CardStoryProps) {
                 <View className="h-1/3"/>
             
                 <LinearGradient colors={['transparent', 'rgba(13,13,13,.8)']} className="h-1/3 p-3 rounded-lg justify-end">
-                    <Text className="text-white" numberOfLines={3}>
+                    <Text className="text-white font-raleway400" numberOfLines={3}>
                         {data.description}
                     </Text>
                 </LinearGradient>

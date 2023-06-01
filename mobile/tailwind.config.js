@@ -7,7 +7,13 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: 'Roboto, sans-serif'
+        raleway400: ['RalewayRegular'],
+        raleway600: ['RalewaySemiBold'],
+        raleway800: ['RalewayBold'],
+        museo400: ['MuseoModernoRegular'],
+        museo600: ['MuseoModernoSemiBold'],
+        museo800: ['MuseoModernoBold'],
+        imfell: ['IMFellEnglishSC'],
       },
       
       colors: {

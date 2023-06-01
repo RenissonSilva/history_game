@@ -22,8 +22,8 @@ export function Chip({name, activeCategory, setActiveCategory, index, ...rest}: 
         >
             <Text className={
                 activeCategory
-                ? 'text-white text-lg mx-10'
-                : 'text-textDisabled text-lg mx-10'
+                ? 'text-white text-lg mx-10 font-raleway400'
+                : 'text-textDisabled text-lg mx-10 font-raleway400'
             }>
                 {name}
             </Text>
