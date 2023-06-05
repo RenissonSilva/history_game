@@ -76,7 +76,7 @@ export function Home() {
         <SafeAreaView className="flex-1 bg-black px-3">
             <Header />
 
-            <ScrollView 
+            {/* <ScrollView 
                 horizontal={true} 
                 className="mt-8 h-20" 
                 showsHorizontalScrollIndicator={false}
@@ -92,7 +92,7 @@ export function Home() {
                         />
                     ))
                 }
-            </ScrollView>
+            </ScrollView> */}
 
             <CardList
                 data={stories} 

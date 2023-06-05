@@ -20,7 +20,7 @@ interface Props {
 
 export function CardList({ data, loadedEverything}: Props) {
     const [refreshing, setRefreshing] = useState(false);
-    const [itemsToRender, setItemsToRender] = useState(10);
+    const [itemsToRender, setItemsToRender] = useState(999);
     const [showToast, setShowToast] = useState(false);
 
     const onRefresh = () => {
@@ -43,21 +43,21 @@ export function CardList({ data, loadedEverything}: Props) {
         <ScrollView 
             showsVerticalScrollIndicator={false}
             onMomentumScrollEnd={(e) => {
-                const scrollPosition = e.nativeEvent.contentOffset.y;
-                const scrollViewHeight = e.nativeEvent.layoutMeasurement.height;
-                const contentHeight = e.nativeEvent.contentSize.height;
-                const isScrolledToBottom = scrollViewHeight + scrollPosition;
+                // const scrollPosition = e.nativeEvent.contentOffset.y;
+                // const scrollViewHeight = e.nativeEvent.layoutMeasurement.height;
+                // const contentHeight = e.nativeEvent.contentSize.height;
+                // const isScrolledToBottom = scrollViewHeight + scrollPosition;
 
-                if(isScrolledToBottom >= (contentHeight-50) && !loadedEverything){
-                    onRefresh();
-                }
+                // if(isScrolledToBottom >= (contentHeight-50) && !loadedEverything){
+                //     onRefresh();
+                // }
 
             }}
-            refreshControl={
-                <RefreshControl
-                  refreshing={refreshing}
-                />
-            }
+            // refreshControl={
+            //     <RefreshControl
+            //       refreshing={refreshing}
+            //     />
+            // }
         >
                 <View className="flex-row flex-1">
                     {/* Left Column Cards */}
