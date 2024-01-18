@@ -1,5 +1,7 @@
 import { FastifyInstance } from "fastify";
-import { z } from "zod";
+import fs from 'fs'
+import util from 'util'
+import { pipeline } from 'stream'
 
 import { prisma } from "../lib/prisma";
 
@@ -21,24 +23,28 @@ export async function storyRoutes(fastify: FastifyInstance) {
     })
 
     fastify.post('/story', async (req, reply) => {
-        const createStoryProps = z.object({
-            title: z.string(),
-            description: z.string(),
-			// coverImage: z.string(), //trocar tipo pra imagens, n sei qual é
-			// resolutionImage: z.string(), //trocar tipo pra imagens, n sei qual é
-			categoryId: z.nullable(z.string()),
-        })
+        const pump = util.promisify(pipeline)
+        let data = {};
 
-        const { title ,description, categoryId } = createStoryProps.parse(req.body)
+        const parts = req.parts()
 
-
-        const story = await prisma.story.create({
-            data: {
-                title,
-                description,
-                categoryId
+        for await (const part of parts) {
+            if (part.file) {
+            await pump(part.file, fs.createWriteStream(`./uploads/${part.filename}`))
+                data = {
+                    ...data,
+                    [part.fieldname]: part.filename
+                }
+            } else {
+                data = {
+                    ...data,
+                    [part.fieldname]: part.value
+                }
             }
-        });
+        }
+
+
+        const story = await prisma.story.create({ data });
 
         return reply.code(201).send({ story })
     })

@@ -1,6 +1,7 @@
 import Fastify from "fastify";
 import cors from '@fastify/cors'
 import jwt from "@fastify/jwt";
+import multipart from '@fastify/multipart'
 
 import { storyRoutes } from "./routes/story";
 import { categoryRoutes } from "./routes/category";
@@ -19,6 +20,8 @@ async function bootstrap() {
         secret: "oráculo" // Var de ambiente
     })
 
+    await fastify.register(multipart)
+    
     await fastify.register(storyRoutes)
     await fastify.register(categoryRoutes)
 
