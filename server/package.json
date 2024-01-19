@@ -9,7 +9,8 @@
     "start": "node dist/server.js"
   },
   "engines": {
-    "node": "18"
+    "node": "16.15.1",
+    "npm": "9.6.1"
   },
   "keywords": [],
   "author": "",
