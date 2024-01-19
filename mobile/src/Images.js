@@ -1,0 +1,22 @@
+export default Images = {
+     '1-1.png'  : require('./assets/cardCovers/1-1.png'),
+     '1-2.png'  : require('./assets/cardCovers/1-2.png'),
+     '2-1.png'  : require('./assets/cardCovers/2-1.png'),
+     '2-2.png'  : require('./assets/cardCovers/2-2.png'),
+     '3-1.png'  : require('./assets/cardCovers/3-1.png'),
+     '3-2.png'  : require('./assets/cardCovers/3-2.png'),
+     '4-1.png'  : require('./assets/cardCovers/4-1.png'),
+     '4-2.png'  : require('./assets/cardCovers/4-2.png'),
+     '5-1.png'  : require('./assets/cardCovers/5-1.png'),
+     '5-2.png'  : require('./assets/cardCovers/5-2.png'),
+     '6-1.png'  : require('./assets/cardCovers/6-1.png'),
+     '6-2.png'  : require('./assets/cardCovers/6-2.png'),
+     '7-1.png'  : require('./assets/cardCovers/7-1.png'),
+     '7-2.png'  : require('./assets/cardCovers/7-2.png'),
+     '8-1.png'  : require('./assets/cardCovers/8-1.png'),
+     '8-2.png'  : require('./assets/cardCovers/8-2.png'),
+     '9-1.png'  : require('./assets/cardCovers/9-1.png'),
+     '9-2.png'  : require('./assets/cardCovers/9-2.png'),
+     '10-1.png' : require('./assets/cardCovers/10-1.png'),
+     '10-2.png' : require('./assets/cardCovers/10-2.png')  
+}

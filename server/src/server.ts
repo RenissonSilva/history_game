@@ -25,7 +25,10 @@ async function bootstrap() {
     await fastify.register(storyRoutes)
     await fastify.register(categoryRoutes)
 
-    await fastify.listen({ port: 3333, host: '0.0.0.0' })
+    await fastify.listen({ 
+        port: process.env.PORT ? Number(process.env.PORT) : 3333,
+        host: '0.0.0.0'
+    })
 }
 
 bootstrap()
