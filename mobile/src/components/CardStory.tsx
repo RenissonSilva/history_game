@@ -1,8 +1,9 @@
 import { LinearGradient } from "expo-linear-gradient"; 
 import { useNavigation } from "@react-navigation/native"
 import { ImageBackground, Text, TouchableOpacity, TouchableOpacityProps, View } from 'react-native'
-
 import clsx from "clsx";
+
+import Images from '../Images';
 
 interface CardStoryProps extends TouchableOpacityProps {
     data:{
@@ -24,6 +25,8 @@ export function CardStory({ data, index, column, ...rest }: CardStoryProps) {
         'red': (index % 2 === 0 && column === 1) || (index === 0 && column === 1)
     }
 
+    const imagePath = Images[data.coverImage];
+
     return (
         <TouchableOpacity className={
             clsx("rounded-lg w-50 m-1 justify-between", {
@@ -36,8 +39,9 @@ export function CardStory({ data, index, column, ...rest }: CardStoryProps) {
             {...rest}
         >
             <ImageBackground
-                resizeMode="contain"
-                source={{ uri: data.coverImage }}
+                resizeMode="cover"
+                source={ imagePath }
+                imageStyle={{ borderRadius: 10 }}
             >
                 <LinearGradient colors={['rgba(13,13,13,.8)', 'transparent']} className="h-1/3 p-3 rounded-lg">
                     <Text className="text-white text-lg font-museo800">

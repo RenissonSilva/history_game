@@ -30,7 +30,7 @@ export async function storyRoutes(fastify: FastifyInstance) {
 
         for await (const part of parts) {
             if (part.file) {
-            await pump(part.file, fs.createWriteStream(`./uploads/${part.filename}`))
+            await pump(part.file, fs.createWriteStream(`../../../mobile/public/cardCovers/${part.filename}`))
                 data = {
                     ...data,
                     [part.fieldname]: part.filename

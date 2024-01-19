@@ -1,9 +1,10 @@
 import { useState, useRef } from "react";
 import { useNavigation, useRoute } from "@react-navigation/native"
-import { View, Text, Image, ScrollView } from "react-native";
+import { View, Text, Image, ScrollView, ImageBackground, TouchableOpacity } from "react-native";
 
 import { BackButton } from "../components/BackButton";
 import { MainButton } from "../components/MainButton";
+import Images from '../Images';
 
 import clsx from "clsx";
 
@@ -45,21 +46,24 @@ export function HistoryDetail() {
         });
     }
 
+    const imagePath = !showResolution ? Images[data.coverImage] : Images[data.resolutionImage];
+
     return (
         <View className="flex-1 bg-black pt-12">
-                <View className={clsx("h-80 rounded-b-3xl p-4", {
+                <BackButton 
+                    showResolution={showResolution}
+                    changeContent={changeContent}
+                />
+                <View className={clsx("h-96 rounded-b-3xl", {
                     ["bg-blue"] : colors.blue || colors.red,
                     ["bg-purple"] : colors.green || colors.purple,
                 })}>
-                    <BackButton 
-                        showResolution={showResolution}
-                        changeContent={changeContent}
-                    />
-
-                    <Image
-                        className="w-64 h-64 self-center relative mt-4"
-                        source={{uri: !showResolution ? data.coverImage : data.resolutionImage}}
-                    />
+                    <TouchableOpacity onPress={() => navigate('showImage', { imagePath }) } >
+                        <ImageBackground
+                            className="rounded-b-3xl w-full h-96 overflow-hidden"
+                            source={ imagePath }
+                        />
+                    </TouchableOpacity>
                 </View>
 
                 <Text className={clsx("text-[40px] mt-8 mx-8 font-imfell ", {
