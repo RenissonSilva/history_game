@@ -54,19 +54,19 @@ export function HistoryDetail() {
                     showResolution={showResolution}
                     changeContent={changeContent}
                 />
-                <View className={clsx("h-96 rounded-b-3xl", {
+                <View className={clsx("h-80 rounded-b-3xl", {
                     ["bg-blue"] : colors.blue || colors.red,
                     ["bg-purple"] : colors.green || colors.purple,
                 })}>
                     <TouchableOpacity onPress={() => navigate('showImage', { imagePath }) } >
                         <ImageBackground
-                            className="rounded-b-3xl w-full h-96 overflow-hidden"
+                            className="rounded-b-3xl w-full h-80 overflow-hidden"
                             source={ imagePath }
                         />
                     </TouchableOpacity>
                 </View>
 
-                <Text className={clsx("text-[40px] mt-8 mx-8 font-imfell ", {
+                <Text className={clsx("text-4xl mt-8 mx-8 font-imfell ", {
                 ["hidden"] : showResolution,
                 ["text-blue"] : colors.blue || colors.red,
                 ["text-purple"] : colors.purple || colors.green,
@@ -81,7 +81,7 @@ export function HistoryDetail() {
                     fadingEdgeLength={200}
                     ref={scrollRef}
                 >
-                    <Text className="text-white text-2xl mb-32 font-museo400 tracking-widest">{!showResolution ? data.description : data.resolution}</Text>
+                    <Text className="text-white text-xl mb-32 font-museo400 tracking-widest">{!showResolution ? data.description : data.resolution}</Text>
                 </ScrollView>
 
                 <MainButton changeContent={changeContent} showResolution={showResolution} colors={colors}/>
