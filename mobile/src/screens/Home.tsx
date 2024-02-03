@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Alert, ScrollView } from "react-native";
 import { useFocusEffect } from "@react-navigation/native";
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -60,11 +60,17 @@ export function Home() {
         }
     }
     
-    useFocusEffect(useCallback(() => {
+    // useFocusEffect(useCallback(() => {
+    //     fetchCategories();
+    //     fetchStories();
+    //     setLoadedEverything(false)
+    // }, []));
+
+    useEffect(() => {
         fetchCategories();
         fetchStories();
         setLoadedEverything(false)
-    }, []));
+    }, [])
 
     if(loading) {
         return (
