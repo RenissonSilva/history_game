@@ -2,12 +2,17 @@ import { useCallback, useEffect, useState } from "react";
 import { Alert, ScrollView } from "react-native";
 import { useFocusEffect } from "@react-navigation/native";
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { OnboardFlow } from 'react-native-onboard';
 
 import { api } from "../lib/axios"
 import { Chip } from "../components/Chip";
 import { Header } from "../components/Header"
 import { Loading } from "../components/Loading";
 import { CardList } from "../components/CardList";
+import RenderItem from "../components/RenderItem";
+import data from "./Onboarding";
+import Animated from "react-native-reanimated";
+import OnboardingScreen from "./OnboardingScreen";
 
 type CategoryProps = Array<{
     name: string;
@@ -80,6 +85,42 @@ export function Home() {
 
     return (
         <SafeAreaView className="flex-1 bg-black px-3">
+            <OnboardingScreen />
+            {/* <OnboardFlow
+                pages={[
+                    {
+                        title: 'Objetivo do jogo',
+                        subtitle: 'Apenas você sabe os detalhes da história, seus amigos te farão perguntas para descobrir o que aconteceu',
+                        imageUri: 'https://frigade.com/img/example1.png',
+                        primaryButtonTitle: 'Próximo'
+                    },
+                    {
+                        title: 'Como jogar?',
+                        subtitle: 'Junte seus amigos e escolha uma história',
+                        imageUri: 'https://frigade.com/img/example1.png',
+                        primaryButtonTitle: 'Próximo'
+                    },
+                    {
+                        title: 'Enigma',
+                        subtitle: 'Leia o enigma para seus amigos e mostre a imagem',
+                        imageUri: 'https://frigade.com/img/example2.png',
+                        primaryButtonTitle: 'Próximo'
+                    },
+                    {
+                        title: 'Como jogar?',
+                        subtitle: 'Seus amigos devem te fazer perguntas para descobrir o que aconteceu, responda apenas com Sim, Não ou Irrelevante',
+                        imageUri: 'https://frigade.com/img/example2.png',
+                        primaryButtonTitle: 'Próximo'
+                    },
+                    {
+                        title: 'Como jogar?',
+                        subtitle: 'Quando conseguirem descobrir o que aconteceu você conta a resolução e mostra a imagem final',
+                        imageUri: 'https://frigade.com/img/example2.png',
+                        primaryButtonTitle: 'Iniciar'
+                    },
+                ]}
+                type={'fullscreen'}
+            /> */}
             <Header />
 
             {/* <ScrollView 
