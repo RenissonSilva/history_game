@@ -1,5 +1,5 @@
 import {StyleSheet, View, FlatList, ViewToken} from 'react-native';
-import React from 'react';
+import React, { useRef } from 'react';
 import Animated, {
   useSharedValue,
   useAnimatedScrollHandler,
@@ -25,11 +25,18 @@ const OnboardingScreen = () => {
     }
   };
 
+  const viewabilityConfig = {
+    minimumViewTime: 300,
+    viewAreaCoveragePercentThreshold: 10,
+  }
+
   const onScroll = useAnimatedScrollHandler({
     onScroll: event => {
       x.value = event.contentOffset.x;
     },
   });
+
+  const viewabilityConfigCallbackPairs = useRef([{ viewabilityConfig, onViewableItemsChanged }])
 
   return (
     <View style={styles.container}>
@@ -46,11 +53,12 @@ const OnboardingScreen = () => {
         bounces={false}
         pagingEnabled={true}
         showsHorizontalScrollIndicator={false}
-        onViewableItemsChanged={onViewableItemsChanged}
-        viewabilityConfig={{
-          minimumViewTime: 300,
-          viewAreaCoveragePercentThreshold: 10,
-        }}
+        // onViewableItemsChanged={onViewableItemsChanged}
+        viewabilityConfigCallbackPairs={viewabilityConfigCallbackPairs.current}
+        // viewabilityConfig={{
+        //   minimumViewTime: 300,
+        //   viewAreaCoveragePercentThreshold: 10,
+        // }}
       />
       <View style={styles.bottomContainer}>
         <Pagination data={data} x={x} />

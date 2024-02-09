@@ -18,10 +18,7 @@ export function MainButton({ changeContent, showResolution, colors }: Props) {
 
     return (
         <TouchableOpacity
-            className={clsx("w-[92%] h-[72] rounded-full justify-center items-center self-center mb-4 flex-row", {
-                ["bg-blue"] : colors.blue || colors.red,
-                ["bg-purple"] : colors.green || colors.purple,
-            })}
+            className={clsx("w-[92%] h-14 rounded-full justify-center items-center self-center mb-4 flex-row bg-blue")}
             onPress={changeContent}
         >
             {showResolution && <MaterialIcons 

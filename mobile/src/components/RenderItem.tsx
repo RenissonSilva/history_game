@@ -13,10 +13,21 @@ type Props = {
   index: number;
   x: SharedValue<number>;
   item: OnboardingData;
+  title: OnboardingData;
 };
 
 const RenderItem = ({index, x, item}: Props) => {
   const {width: SCREEN_WIDTH} = useWindowDimensions();
+
+  const arrColors = [
+    'text-colorStep1',
+    'text-colorStep2',
+    'text-colorStep3',
+    'text-colorStep4',
+    'text-colorStep5'
+  ];
+
+  const textColor = arrColors[index];
 
   const lottieAnimationStyle = useAnimatedStyle(() => {
     const translateYAnimation = interpolate(
@@ -67,18 +78,21 @@ const RenderItem = ({index, x, item}: Props) => {
           ]}
         />
       </View>
+      <Text className={`text-4xl mt-8 mx-8 font-imfell ${textColor}`}>
+        {item.title}
+      </Text>
       <Animated.View style={lottieAnimationStyle}>
         <LottieView
           source={item.animation}
           style={{
-            width: SCREEN_WIDTH * 0.9,
-            height: SCREEN_WIDTH * 0.9,
+            width: SCREEN_WIDTH * 0.7,
+            height: SCREEN_WIDTH * 0.7,
           }}
           autoPlay
           loop
         />
       </Animated.View>
-      <Text style={[styles.itemText, {color: item.textColor}]}>
+      <Text className={`text-3xl mt-8 mx-8 font-imfell text-center ${textColor}`}>
         {item.text}
       </Text>
     </View>
@@ -96,10 +110,19 @@ const styles = StyleSheet.create({
   },
   itemText: {
     textAlign: 'center',
-    fontSize: 34,
+    fontSize: 28,
     fontWeight: 'bold',
     marginBottom: 10,
     marginHorizontal: 20,
+    fontFamily: 'IMFellEnglishSC'
+  },
+  itemTitle: {
+    textAlign: 'center',
+    fontSize: 32,
+    fontWeight: 'bold',
+    marginBottom: 10,
+    marginHorizontal: 20,
+    marginTop: 20,
   },
   circleContainer: {
     ...StyleSheet.absoluteFillObject,

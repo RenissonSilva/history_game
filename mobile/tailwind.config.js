@@ -28,7 +28,15 @@ module.exports = {
 
         // Text colors
         textDisabled: '#6A6A6F',
-        textStory: '#C7C7C7'
+        textStory: '#C7C7C7',
+
+        // Onboarding colors
+        colorStep1: '#B2B5FF',
+        colorStep2: '#202733',
+        colorStep3: '#cccccc',
+        colorStep4: '#4C3E7A',
+        colorStep5: '#002A2A',
+
       },
     },
   },

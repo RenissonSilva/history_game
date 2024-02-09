@@ -69,8 +69,8 @@ const CustomButton = ({flatListRef, flatListIndex, dataLength, x}: Props) => {
   const animatedColor = useAnimatedStyle(() => {
     const backgroundColor = interpolateColor(
       x.value,
-      [0, SCREEN_WIDTH, 2 * SCREEN_WIDTH],
-      ['#005b4f', '#1e2169', '#F15937'],
+      [0, SCREEN_WIDTH, 2 * SCREEN_WIDTH, 3 * SCREEN_WIDTH, 4 * SCREEN_WIDTH],
+      ['#917CFF', '#202733', '#765756', '#7450E9', '#002A2A'],
     );
 
     return {
@@ -90,7 +90,7 @@ const CustomButton = ({flatListRef, flatListIndex, dataLength, x}: Props) => {
       <Animated.View
         style={[styles.container, buttonAnimationStyle, animatedColor]}>
         <Animated.Text style={[styles.textButton, textAnimationStyle]}>
-          Get Started
+          Iniciar
         </Animated.Text>
         <Animated.Image
           source={require('../assets/images/ArrowIcon.png')}

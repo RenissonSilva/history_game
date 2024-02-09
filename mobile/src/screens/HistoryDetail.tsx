@@ -57,7 +57,7 @@ export function HistoryDetail() {
                 />
 
                 <TouchableOpacity
-                    className="bg-blue/80 w-16 h-16 rounded-full justify-center items-center m-5 absolute z-50 mt-14 top-0 right-0"
+                    className="bg-blue/80 w-14 h-14 rounded-full justify-center items-center m-5 absolute z-50 mt-14 top-0 right-0"
                     onPress={() => navigate('showImage', { imagePath }) } 
                 >
                     <MaterialIcons 
@@ -66,10 +66,7 @@ export function HistoryDetail() {
                         color="rgba(255, 255, 255, .85)"
                     />
                 </TouchableOpacity>
-                <View className={clsx("h-80 rounded-b-3xl", {
-                    ["bg-blue"] : colors.blue || colors.red,
-                    ["bg-purple"] : colors.green || colors.purple,
-                })}>
+                <View className={clsx("h-80 rounded-b-3xl bg-blue")}>
                     <TouchableOpacity onPress={() => navigate('showImage', { imagePath }) } >
                         <ImageBackground
                             className="rounded-b-3xl w-full h-80 overflow-hidden"
@@ -78,11 +75,7 @@ export function HistoryDetail() {
                     </TouchableOpacity>
                 </View>
 
-                <Text className={clsx("text-4xl mt-8 mx-8 font-imfell ", {
-                ["hidden"] : showResolution,
-                ["text-blue"] : colors.blue || colors.red,
-                ["text-purple"] : colors.purple || colors.green,
-                })}>{!showResolution ? data.title : ''}</Text>
+                {!showResolution && <Text className={clsx("text-4xl mt-8 mx-8 font-imfell text-blue")}>{data.title}</Text>}
 
                 <ScrollView 
                     className={clsx("mx-8", {
